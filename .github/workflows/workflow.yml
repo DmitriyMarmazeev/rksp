@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/backend
+  IMAGE_NAME: ${{ github.repository, lower }}/backend
 
 jobs:
   build:
@@ -31,7 +31,5 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:latest
-        env:
-          REGISTRY: ghcr.io
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
