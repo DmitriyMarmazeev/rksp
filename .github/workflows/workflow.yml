@@ -31,5 +31,7 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:latest
+        env:
+          REGISTRY: ghcr.io
