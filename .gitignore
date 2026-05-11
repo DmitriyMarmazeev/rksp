@@ -1,0 +1,5 @@
+.env
+database
+docker-compose.yml
+__pycache__
+node_modules
