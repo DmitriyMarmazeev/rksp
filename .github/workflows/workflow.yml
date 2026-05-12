@@ -47,8 +47,8 @@ jobs:
       name: staging
       url: https://api-staging.onrender.com
     steps:
-      - name: Trigger Render deploy with specific image tag
+      - name: Trigger Render deploy (latest image)
         run: |
-          IMG_URL="ghcr.io/${{ steps.vars.outputs.owner_lc }}/backend:${{ github.sha }}"
-          ENCODED_IMG_URL=$(printf '%s' "${IMG_URL}" | jq -sRr @uri)
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}?imgURL=${ENCODED_IMG_URL}"
+          echo "Deploying image with tag latest (built from commit ${{ github.sha }})"
+          curl -X POST "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}"
+          echo "Deploy triggered successfully"
