@@ -4,8 +4,8 @@ set -e
 echo "Waiting for database..."
 python wait-for-db.py
 
-echo "Running migrations..."
-alembic upgrade head
-
-echo "Starting server..."
-exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+if [ $# -gt 0 ]; then
+    exec python main.py "$@"
+else
+    exec python main.py server
+fi
