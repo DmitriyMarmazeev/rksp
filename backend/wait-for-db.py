@@ -9,7 +9,7 @@ def wait_for_db():
     max_attempts = 30
     attempt = 0
     
-    print(f"Waiting for database {db_host}:{db_port}...")
+    print(f"Waiting for database database_url...")
     
     while attempt < max_attempts:
         try:
