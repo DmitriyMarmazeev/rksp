@@ -4,11 +4,7 @@ import os
 import sys
 
 def wait_for_db():
-    db_host = os.getenv("DB_HOST", "db")
-    db_port = os.getenv("DB_PORT", "5432")
-    db_user = os.getenv("DB_USER", "postgres")
-    db_password = os.getenv("DB_PASSWORD", "postgres")
-    db_name = os.getenv("DB_NAME", "library_db")
+    database_url = os.getenv("DATABASE_URL")
     
     max_attempts = 30
     attempt = 0
@@ -17,14 +13,7 @@ def wait_for_db():
     
     while attempt < max_attempts:
         try:
-            conn = psycopg2.connect(
-                host=db_host,
-                port=db_port,
-                user=db_user,
-                password=db_password,
-                dbname=db_name,
-                connect_timeout=1
-            )
+            conn = psycopg2.connect(database_url,connect_timeout=1)
             conn.close()
             print("Database is ready!")
             return True
